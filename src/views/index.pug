@@ -1,0 +1,17 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, inital-scale=1.0")
+    title Document
+  body
+
+
+    include layouts/header
+    h1 #{title}
+    ul
+      each contact in contacts
+        li= contact.title 
+
+    include layouts/footer
+

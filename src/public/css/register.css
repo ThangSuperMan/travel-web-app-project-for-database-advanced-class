@@ -1,0 +1,46 @@
+.register {
+  border: 1px solid var(--primary-border-color);
+  padding: 20px;
+  max-width: 500px;
+  margin-top: 80px;
+  margin-inline: auto;
+  border-radius: 5px;
+}
+
+.register__title {
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.register__title span {
+  margin-left: 8px;
+}
+
+.register__text-field {
+  margin-bottom: 12px;
+}
+
+.register__text-field label {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.register__text-field input {
+  width: 100%;
+  padding: 12px;
+  outline: none;
+  border-radius: 5px;
+  border: 2px solid var(--primary-border-color);
+  transition: all 0.2s linear;
+}
+
+.register__text-field input:focus {
+  border: 2px solid var(--primary-input-focus-color);
+}
+
+.btn-secondary {
+  background-color: var(--primary-color);
+}
+
+

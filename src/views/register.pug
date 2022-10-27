@@ -1,0 +1,57 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, inital-scale=1.0")
+    title Trang With Thang - Register page
+
+    // Styles
+    link(rel="stylesheet", type="text/css", href='/css/common.css')
+    link(rel="stylesheet", type="text/css", href='/css/register.css')
+
+    // Icons
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css",integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" )
+  body
+    div.register
+      h1.register__title 
+        i.fa-solid.fa-user-plus
+        span Register
+      div.register__text-field 
+        label(for="name") Name
+        input(
+          id="name"
+          type="text"
+          name="name"
+          placeholder="Enter Name"
+          autocomplete="off"
+        )
+      div.register__text-field 
+        label(for="email") Email
+        input(
+          id="email"
+          type="text"
+          name="email"
+          placeholder="Enter Email"
+          autocomplete="off"
+        )
+      div.register__text-field 
+        label(for="password") Password
+        input(
+          id="password"
+          type="text"
+          name="password"
+          placeholder="Create Password"
+          autocomplete="off"
+      )
+      div.register__text-field 
+        label(for="confirm_password") Confirm Password
+        input(
+          id="confirm_password"
+          type="text"
+          name="name"
+          placeholder="Enter Confirm Password"
+          autocomplete="off"
+        )
+      a(href="/users/login").btn.btn-secondary Login
+
+
