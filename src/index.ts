@@ -6,11 +6,11 @@ import commonRouter from './routes/index'
 import userRouter from './routes/users'
 
 const app = express()
-const port = 3002
+const port = 3001
 
 // Connect to Mongo
 mongoose.connect(db.MongoURI)
-  .then(() => console.log('MongoDB Connected'))
+  .then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log(err))
 
 // Load view engine

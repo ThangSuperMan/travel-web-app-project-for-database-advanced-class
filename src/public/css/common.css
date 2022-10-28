@@ -5,6 +5,7 @@
   --primary-border-color: #E4E4E4;
   --secondary-color: #A9A9A9;
   --primary-input-focus-color: #04AA6D;
+  --message-yellow-alert: #FDFCCE;
 }
 
 * {
@@ -25,4 +26,21 @@ body {
   padding-block: 12px;
   font-weight: bold;
   border-radius: 5px;
+}
+
+.messages-alert {
+  color: black;
+  border-radius: 5px;
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
+
+.messages-alert__title {
+  background: var(--message-yellow-alert);
+  padding: 12px 8px;
+  border-radius: 5px;
+}
+
+.messages-alert__title:not(:first-child) {
+  margin-top: 8px;
 }

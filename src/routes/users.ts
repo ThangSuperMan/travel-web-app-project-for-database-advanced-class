@@ -1,4 +1,6 @@
 import express, { Request, Response } from 'express'
+import User from '../models/user'
+import bcrypt from 'bcryptjs'
 const router = express.Router()
 
 // Login Page
@@ -40,7 +42,7 @@ router.post("/register", (req: Request, res: Response) => {
 
   // Check pass length
   if (password.length < 6) {
-    errors.push({ msg: "Password should be at least 6 charaters" })
+    errors.push({ msg: "Password should be at least 6 characters" })
   }
 
   console.log(`Number of errors: ${errors.length}`)
@@ -54,7 +56,45 @@ router.post("/register", (req: Request, res: Response) => {
       confirmPassword,
     })
   } else {
-    res.send('Pass')
+    // Validate passed
+    User.findOne({ email: email })
+      .then(user => {
+        if (user) {
+          // User exists
+          errors.push({ msg: "Email is already registered" })
+          res.render('register', {
+            errors,
+            name,
+            email,
+            password,
+            confirmPassword,
+          })
+        } else {
+          const newUser = new User({
+            name,
+            email,
+            password,
+          })
+
+          var salt = bcrypt.genSaltSync(10);
+          var hash = bcrypt.hashSync(newUser.password, salt);
+          console.log(`salt: ${salt}`)
+          console.log(`hash: ${hash}`)
+
+          newUser.password = hash
+          newUser.save()
+            .then(user => {
+              res.redirect("/login")
+            })
+            .catch(err => console.log(err))
+
+
+          console.log('newUser')
+          console.log(newUser)
+          res.send("Hello")
+        }
+      })
+
   }
 })
 

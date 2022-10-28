@@ -1,2 +1,3 @@
-each errorItem in errors
-  p= errorItem.msg
+section.messages-alert
+  each error in errors ? errors : []
+    p.messages-alert__title= error.msg
