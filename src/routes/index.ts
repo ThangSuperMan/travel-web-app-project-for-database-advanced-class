@@ -5,4 +5,8 @@ router.get('/', (req: Request, res: Response) => {
   res.render('welcome')
 })
 
+router.get('/dashboard', (req: Request, res: Response) => {
+  res.render('dashboard')
+})
+
 export default router

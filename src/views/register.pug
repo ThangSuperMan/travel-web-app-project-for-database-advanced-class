@@ -3,7 +3,7 @@ html(lang="en")
   head
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, inital-scale=1.0")
-    title Trang With Thang - Register page
+    title Trang With Thang - Login page
 
     // Styles
     link(rel="stylesheet", type="text/css", href='/css/common.css')
@@ -16,42 +16,54 @@ html(lang="en")
       h1.register__title 
         i.fa-solid.fa-user-plus
         span Register
-      div.register__text-field 
-        label(for="name") Name
-        input(
-          id="name"
-          type="text"
-          name="name"
-          placeholder="Enter Name"
-          autocomplete="off"
-        )
-      div.register__text-field 
-        label(for="email") Email
-        input(
-          id="email"
-          type="text"
-          name="email"
-          placeholder="Enter Email"
-          autocomplete="off"
-        )
-      div.register__text-field 
-        label(for="password") Password
-        input(
-          id="password"
-          type="text"
-          name="password"
-          placeholder="Create Password"
-          autocomplete="off"
-      )
-      div.register__text-field 
-        label(for="confirm_password") Confirm Password
-        input(
-          id="confirm_password"
-          type="text"
-          name="name"
-          placeholder="Enter Confirm Password"
-          autocomplete="off"
-        )
-      a(href="/users/login").btn.btn-secondary Login
 
+      include partials/messages
+
+      // Form start
+      form(action="/users/register", method="post").register__form
+        div.register__text-field 
+          label(for="name") Name
+          input(
+            id="name"
+            type="text"
+            name="name"
+            value=name
+            placeholder="Enter Name"
+            autocomplete="off"
+          )
+        div.register__text-field 
+          label(for="email") Email
+          input(
+            id="email"
+            type="text"
+            name="email"
+            value=email
+            placeholder="Enter Email"
+            autocomplete="off"
+          )
+        div.register__text-field 
+          label(for="password") Password
+          input(
+            id="password"
+            type="password"
+            name="password"
+            value=password
+            placeholder="Create Password"
+            autocomplete="off"
+        )
+        div.register__text-field 
+          label(for="confirmPassword") Confirm Password
+          input(
+            id="confirmPassword"
+            type="password"
+            name="confirmPassword"
+            value=confirmPassword
+            placeholder="Enter Confirm Password"
+            autocomplete="off"
+          )
+        button(type="submit").btn.btn-secondary Login
+      // Form end
+
+      p.register__have-an-account Have An Account? 
+        a(href="/users/login") Login
 
