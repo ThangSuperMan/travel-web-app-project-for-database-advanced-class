@@ -21,13 +21,7 @@ interface FormError {
 
 // Register Handle
 router.post("/register", (req: Request, res: Response) => {
-  console.log(req.body)
   const { name, email, password, confirmPassword } = req.body
-  console.log(name)
-  console.log(email)
-  console.log(password)
-  console.log(confirmPassword)
-
   let errors: FormError[] = []
 
   // Check required fields
@@ -45,8 +39,6 @@ router.post("/register", (req: Request, res: Response) => {
     errors.push({ msg: "Password should be at least 6 characters" })
   }
 
-  console.log(`Number of errors: ${errors.length}`)
-
   if (errors.length > 0) {
     res.render('register', {
       errors,
@@ -59,6 +51,8 @@ router.post("/register", (req: Request, res: Response) => {
     // Validate passed
     User.findOne({ email: email })
       .then(user => {
+        console.log('User')
+        console.log(user)
         if (user) {
           // User exists
           errors.push({ msg: "Email is already registered" })
@@ -78,20 +72,15 @@ router.post("/register", (req: Request, res: Response) => {
 
           var salt = bcrypt.genSaltSync(10);
           var hash = bcrypt.hashSync(newUser.password, salt);
-          console.log(`salt: ${salt}`)
-          console.log(`hash: ${hash}`)
 
           newUser.password = hash
           newUser.save()
             .then(user => {
-              res.redirect("/login")
+              console.log('Save user successfuly')
+              req.flash('success_msg', 'You are now registered and can log in')
+              res.redirect("/users/login")
             })
             .catch(err => console.log(err))
-
-
-          console.log('newUser')
-          console.log(newUser)
-          res.send("Hello")
         }
       })
 

@@ -6,6 +6,7 @@
   --secondary-color: #A9A9A9;
   --primary-input-focus-color: #04AA6D;
   --message-yellow-alert: #FDFCCE;
+  --message-green-success: #D3EFDD;
 }
 
 * {
@@ -43,4 +44,12 @@ body {
 
 .messages-alert__title:not(:first-child) {
   margin-top: 8px;
+}
+
+.messages-flash__success {
+  background: var(--message-green-success);
+  padding: 12px 8px;
+  border-radius: 5px;
+  color: #678160;
+  margin-block: 8px;
 }

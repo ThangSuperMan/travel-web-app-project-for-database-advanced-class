@@ -1,3 +1,9 @@
 section.messages-alert
   each error in errors ? errors : []
     p.messages-alert__title= error.msg
+
+section.messages-flash
+    if successMessage != ''
+      p.messages-flash__success #{successMessage}   
+    else 
+
