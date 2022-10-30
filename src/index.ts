@@ -42,7 +42,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   next()
 })
 
-// app.use(flash())
+app.use(flash())
 
 // Routes
 app.use('/', commonRouter)
