@@ -7,3 +7,8 @@ section.messages-flash
       p.messages-flash__success #{successMessage}   
     else 
 
+section.messages-flash
+  if loginErrorMessage != ''
+    p.messages-alert__title #{loginErrorMessage}
+  else 
+

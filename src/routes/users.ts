@@ -1,6 +1,9 @@
-import express, { Request, Response } from 'express'
+import express, { Request, Response, NextFunction } from 'express'
 import User from '../models/user'
 import bcrypt from 'bcryptjs'
+import passport from 'passport'
+
+// Variables
 const router = express.Router()
 
 // Login Page
@@ -76,7 +79,7 @@ router.post("/register", (req: Request, res: Response) => {
           newUser.password = hash
           newUser.save()
             .then(user => {
-              console.log("Save user successfuly")
+              console.log("Save user successfully")
               console.log(user)
               req.flash("success_msg", "You are now registered and can log in")
               res.redirect("/users/login")
@@ -87,5 +90,16 @@ router.post("/register", (req: Request, res: Response) => {
 
   }
 })
+
+router.post('/login',
+  passport.authenticate('local', {
+    successRedirect: '/dashboard',
+    failureRedirect: '/users/login',
+    failureFlash: true
+  }),
+  function(req: Request, res: Response, next: NextFunction) {
+    console.log('/users/login/ post method is being called!')
+  })
+
 
 export default router

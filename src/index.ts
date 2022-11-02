@@ -3,12 +3,17 @@ import path from 'path'
 import mongoose from 'mongoose'
 import flash from 'connect-flash'
 import session from 'express-session'
+import passport from 'passport'
 import db from './config/keys'
 import commonRouter from './routes/index'
 import userRouter from './routes/users'
 
 const app = express()
 const port = 3001
+
+// Passport config
+import setUpPassport from './config/passport'
+setUpPassport(passport)
 
 // Connect to Mongo
 mongoose.connect(db.MongoURI)
@@ -34,11 +39,16 @@ app.use(session({
 
 app.use(flash())
 
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Global variables
 app.use((req: Request, res: Response, next: NextFunction) => {
   console.log('Loaded the Global variables')
   res.locals.successMessage = req.flash("success_msg")
   res.locals.errorMessage = req.flash("error_msg")
+  res.locals.loginErrorMessage = req.flash("error")
   next()
 })
 
