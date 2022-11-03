@@ -40,13 +40,13 @@ export default function setUpPassport(passport: any) {
     })
   )
 
-  // passport.serializeUser(function(user: any, done: any) {
-  //   done(null, user.id);
-  // });
-  //
-  // passport.deserializeUser(function(id: any, done: any) {
-  //   User.findById(id, (err: Error, user: any) => {
-  //     done(err, user);
-  //   });
-  // });
+  passport.serializeUser(function(user: any, done: any) {
+    done(null, user.id);
+  });
+
+  passport.deserializeUser(function(id: any, done: any) {
+    User.findById(id, (err: Error, user: any) => {
+      done(err, user);
+    });
+  });
 }

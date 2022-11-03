@@ -1,4 +1,5 @@
 import express, { Request, Response, NextFunction } from 'express'
+import { ensureAuthenticated } from '../config/auth'
 import User from '../models/user'
 import bcrypt from 'bcryptjs'
 import passport from 'passport'
@@ -8,7 +9,13 @@ const router = express.Router()
 
 // Login Page
 router.get("/login", (req: Request, res: Response) => {
-  console.log("login router")
+  console.log("login get method")
+  if (req.isAuthenticated()) {
+    console.log(req.isAuthenticated())
+    res.redirect("/dashboard")
+  }
+
+  console.log(req.isAuthenticated())
   res.render("login")
 })
 
@@ -87,19 +94,24 @@ router.post("/register", (req: Request, res: Response) => {
             .catch(err => console.log(err))
         }
       })
-
   }
 })
 
-router.post('/login',
-  passport.authenticate('local', {
-    successRedirect: '/dashboard',
-    failureRedirect: '/users/login',
+router.post("/login",
+  passport.authenticate("local", {
+    successRedirect: "/dashboard",
+    failureRedirect: "/users/login",
     failureFlash: true
   }),
   function(req: Request, res: Response, next: NextFunction) {
-    console.log('/users/login/ post method is being called!')
+    console.log("/users/login/ post method is being called!")
   })
+
+router.get("/logout", (req: Request, res: Response, next: NextFunction) => {
+  console.log("logout get method")
+  req.flash("success_msg", "You are logged out")
+  res.redirect("/users/login")
+})
 
 
 export default router

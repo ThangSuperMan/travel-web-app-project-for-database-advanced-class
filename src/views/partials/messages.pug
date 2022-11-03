@@ -3,10 +3,15 @@ section.messages-alert
     p.messages-alert__title= error.msg
 
 section.messages-flash
-    if successMessage != ''
-      p.messages-flash__success #{successMessage}   
-    else 
+  if successMessage != ''
+    p.messages-flash__success #{successMessage}   
+  else 
 
+section.messages-flash
+  if errorMessage != ''
+    p.messages-alert__title #{errorMessage}
+  else
+  
 section.messages-flash
   if loginErrorMessage != ''
     p.messages-alert__title #{loginErrorMessage}
